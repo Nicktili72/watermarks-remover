@@ -40,6 +40,12 @@
 !/SECURITY.md
 !/stealer/
 !/stealer/**
+!/macos/
+!/macos/**
+
+# Xcode user state inside the otherwise-tracked Mac app
+macos/**/xcuserdata/
+macos/**/*.xcuserstate
 
 # Exceptions even inside allowed trees
 .env

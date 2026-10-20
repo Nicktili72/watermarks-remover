@@ -376,6 +376,12 @@ curl -s -X POST "$WM/clean" -H 'Content-Type: application/json' \
 
 The service routes by filename extension then magic bytes, so text / image / container are auto-detected. Set `WATERMARKS_SERVER_API_KEY` to require `Authorization: Bearer <key>` on every request. Loopback-only bind by default (`--host` to override); intended for a trusted network.
 
+## macOS app
+
+[`macos/WatermarksRemover`](macos/WatermarksRemover) is a SwiftUI app for macOS 14 or later. Open `WatermarksRemover.xcodeproj` and run it. The shared scheme sets the working directory to the repository root, so Run starts `service/scripts/server.py` on `127.0.0.1:8765` when nothing is already answering `/health`.
+
+Inspect uses `POST /inspect`. Cleaning a file uses `POST /clean`. Cleaning text uses `POST /clean` when a rewrite backend is configured, and otherwise strips invisible characters with `clean_text.py`. The app is for text and files you own. It needs Python 3.10+ on the Mac (`python3` on `PATH`, or Homebrew’s `/opt/homebrew/bin/python3`).
+
 ### Watermark detection (`/detect` and `detect_before` / `detect_after`)
 
 Detection is a separate step from cleaning — the service never calls vendor
